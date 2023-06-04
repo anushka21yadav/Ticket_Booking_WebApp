@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body style ="background-image: url(https://thumbs.dreamstime.com/b/movie-cinema-icons-vector-illustration-horizontal-flat-design-various-58158312.jpg)">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black; border-right: 50px; height: 50px; width: 1140px; margin-left: 200px; margin-top: 55px;">
+        <a class="navbar-brand" href="#" style=" font-size:30px; font-family: Brush Script MT;">Ticket Show</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>   
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="font-family: century gothic;">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('views.user_login_home')}}" style="margin-left:50px; font-size: large;">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('views.booking_summary')}}" style="margin-left:25px; font-size: large;">View Bookings</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('views.trends')}}" style="margin-left:25px; font-size: large;">Summary</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" style="font-size: large; margin-left: 100px;">{{user.user_name}}</a>
+            </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" name="search" id="search" placeholder="Search">
+            <button type="submit" class="btn btn-outline-info my-2 my-sm-0 " formaction="{{url_for('views.search')}}", formmethod="POST">Search</button>
+            <button type="button" class="btn btn-outline-info my-2 my-sm-0 " type="submit" style="margin-left: 10px">Logout</button>
+            </form>
+        </div>
+        </nav>
+        <!-- <div class = "container" style="font-family: sans-serif; width: 1150px; height: 555px; margin-top: 10px; margin-left: 200px; background-color: black; color: whitesmoke; opacity: .75;">
+          <div class="container-content">
+            <h3 style="padding-top: 30px; font-family: papyrus;"><b>Results for {{search.venue_name}}</b></h3>
+            <div class="movies" style="box-shadow: rgba(0, 0, 0, 0.20) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.20) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.20) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.20) 0px 2px 1px, rgba(0, 0, 0, 0.20) 0px 4px 2px, rgba(0, 0, 0, 0.20) 0px 8px 4px, rgba(0, 0, 0, 0.20) 0px 16px 8px, rgba(0, 0, 0, 0.20) 0px 32px 16px; background-color: whitesmoke; color: black; border-color: aqua; border-width: 5px; border-radius: 20px; width: 150px; height: 100px; float: left; margin-left: 50px; font-family: Copperplate Gothic Light; font-weight: bold; font-size: large;">
+                <div align="center" style="margin-top: 40px; margin-bottom: -25px;">
+                    {{search}} 
+                    <div style="font-size: medium; font-weight: lighter;"></div>
+                </div>
+                <br>
+                <form><button type="submit" class="btn btn-info my-2 my-sm-0 " formaction="" formmethod="POST" style=" margin-left: 45px; height: 30px; width: 100px; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: papyrus;">Book Now</button></form>
+            </div>
+        </div>  -->
+        <!-- </div>  -->
+        <div class = "container" style="font-family: sans-serif; width: 1150px; height: 555px; margin-top: 10px; margin-left: 200px; background-color: black; color: whitesmoke; opacity: .75;">
+            <div class="container-content">
+                <h3 style="padding-top: 30px; font-family: papyrus;"><b>Results for {{search}}</b></h3> 
+                <!-- {% if movie_search %}   
+                    {% for i in movie_search %}
+                    <tr>
+                    <div class="movies" style="box-shadow: rgba(0, 0, 0, 0.20) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.20) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.20) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.20) 0px 2px 1px, rgba(0, 0, 0, 0.20) 0px 4px 2px, rgba(0, 0, 0, 0.20) 0px 8px 4px, rgba(0, 0, 0, 0.20) 0px 16px 8px, rgba(0, 0, 0, 0.20) 0px 32px 16px; background-color: whitesmoke; opacity: 1; color: black; border-width: 5px; border-radius: 20px; width: 150px; height: 100px; float: left; margin-left: 50px; margin-top: 100px; font-family: Copperplate Gothic Light; font-weight: bold; font-size: large;">
+                        <div align="center" style="margin-top: 40px; margin-bottom: -25px;">
+                            {{i[0]}} 
+                            <div style="font-size: medium; font-weight: lighter;">/5</div>
+                        </div>
+                        <br>
+                        <form><button type="submit" class="btn btn-info my-2 my-sm-0 " formaction="" formmethod="POST" style=" margin-left: 45px; height: 30px; width: 100px; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: papyrus;">Book Now</button></form>
+                    </div>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    {% for i in venue_search %}
+                    <tr>
+                    <div class="movies" style="box-shadow: rgba(0, 0, 0, 0.20) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.20) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.20) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.20) 0px 2px 1px, rgba(0, 0, 0, 0.20) 0px 4px 2px, rgba(0, 0, 0, 0.20) 0px 8px 4px, rgba(0, 0, 0, 0.20) 0px 16px 8px, rgba(0, 0, 0, 0.20) 0px 32px 16px; background-color: whitesmoke; opacity: 1; color: black; border-width: 5px; border-radius: 20px; width: 150px; height: 100px; float: left; margin-left: 50px; margin-top: 100px; font-family: Copperplate Gothic Light; font-weight: bold; font-size: large;">
+                        <div align="center" style="margin-top: 40px; margin-bottom: -25px;">
+                            {{i[0]}}
+                            <div style="font-size: medium; font-weight: lighter;">/5</div>
+                        </div>
+                        <br>
+                        <form><button type="submit" class="btn btn-info my-2 my-sm-0 " formaction="" formmethod="POST" style=" margin-left: 45px; height: 30px; width: 100px; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: papyrus;">Book Now</button></form>
+                    </div>
+                    </tr>
+                    {% endfor %}
+                {% endif %}     -->
+
+
+                <!-- {% if movie_search %}
+                {% for i in movie_search %}
+                <tr>
+                    <div class="venue" style="margin-top: 60px; margin-bottom: 60px; margin-left: 100px; height: 100px; width: 1140px; border-radius: 10px;">
+                        <h3 style="margin-left: 20px; padding-top: 20px; font-family: papyrus; color: whitesmoke;"><b>{{i}}</b></h3>
+                        {% for x in movie_search[i] %}
+                            <div class="movies" style="box-shadow: rgba(0, 0, 0, 0.20) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.20) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.20) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.20) 0px 2px 1px, rgba(0, 0, 0, 0.20) 0px 4px 2px, rgba(0, 0, 0, 0.20) 0px 8px 4px, rgba(0, 0, 0, 0.20) 0px 16px 8px, rgba(0, 0, 0, 0.20) 0px 32px 16px; background-color: whitesmoke; color: black; border-width: 5px; border-radius: 20px; width: 150px; height: 100px; float: left; margin-left: 50px; font-family: Copperplate Gothic Light; font-weight: bold; font-size: large;">
+                                <div align="center" style="margin-top: 40px; margin-bottom: -25px;">
+                                    {{x[0]}} 
+                                    <div style="font-size: medium; font-weight: lighter;">{{x[2]}}/5</div>
+                                </div>
+                                <br>
+                                <form><button type="submit" class="btn btn-info my-2 my-sm-0 " formaction="{{url_for('views.booking_page', id = x[1])}}" formmethod="POST" style=" margin-left: 45px; height: 30px; width: 100px; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: papyrus;">Book Now</button></form>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </tr>
+                {% endfor %}
+                {% else %} -->
+                {% for i in search_list %}
+                <tr>
+                    <div class="venue" style="margin-top: 60px; margin-bottom: 60px; margin-left: 100px; height: 100px; width: 1140px; border-radius: 10px;">
+                        <h3 style="margin-left: 20px; padding-top: 20px; font-family: papyrus; color: whitesmoke;"><b>{{i}}</b></h3>
+                        {% for x in search_list[i] %}
+                            <div class="movies" style="box-shadow: rgba(0, 0, 0, 0.20) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.20) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.20) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.20) 0px 2px 1px, rgba(0, 0, 0, 0.20) 0px 4px 2px, rgba(0, 0, 0, 0.20) 0px 8px 4px, rgba(0, 0, 0, 0.20) 0px 16px 8px, rgba(0, 0, 0, 0.20) 0px 32px 16px; background-color: whitesmoke; color: black; border-width: 5px; border-radius: 20px; width: 150px; height: 100px; float: left; margin-left: 50px; font-family: Copperplate Gothic Light; font-weight: bold; font-size: large;">
+                                <div align="center" style="margin-top: 40px; margin-bottom: -25px;">
+                                    {{x[0]}} 
+                                    <div style="font-size: medium; font-weight: lighter;">{{x[2]}}/5</div>
+                                </div>
+                                <br>
+                                {% if x[3] > 0 %}
+                                <form><button type="submit" class="btn btn-info my-2 my-sm-0 " formaction="{{url_for('views.booking_page', id = x[1])}}" formmethod="POST" style=" margin-left: 45px; height: 30px; width: 100px; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: papyrus;">Book Now</button></form>
+                                {% else %}
+                                <form><button type="submit" class="btn btn-info my-2 my-sm-0 " formaction="{{url_for('views.housefull', id = x[1])}}" formmethod="POST" style=" margin-left: 45px; height: 30px; width: 100px; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: papyrus;">Book Now</button></form>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </tr>
+                {% endfor %}
+                <!-- {% endif %} -->
+            </div>    
+    </div>    
+</body>
+</body>
+</html>

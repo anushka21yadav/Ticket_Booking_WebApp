@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Admin Home</title>
+</head>
+<body style ="background-image: url(https://thumbs.dreamstime.com/b/movie-cinema-icons-vector-illustration-horizontal-flat-design-various-58158312.jpg);">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert alert-dismissible fade show" role="alert" style="margin-top: 20px; width: 1150px; margin-left: 200px; background-image: linear-gradient(90deg, #E7E9BB,  #403B4A);">
+        <div style="font-weight: bolder; font-family: papyrus; font-size: large;">{{message}}</div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>      
+    {% endfor %}
+    <div class="expmouse">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black; border-right: 50px; height: 50px; width: 1140px; margin-left: 200px; margin-top: 55px;">
+            <a class="navbar-brand" href="#" style=" font-size:30px; font-family: Brush Script MT;">Ticket Show</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>   
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="font-family: century gothic;">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:5000/admin_login_home" style="margin-left:50px; font-size: large;">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:5000/add_movie" style="margin-left:25px; font-size: large;">Insert Movie</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:5000/add_venue" style="margin-left:25px; font-size: large;">Insert Venue</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" style="font-size: large; margin-left: 350px;">{{admin.admin_name}}</a>
+                </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-info my-2 my-sm-0 " type="submit" formaction="/logout" formmethod="POST" style="margin-left: 10px">Logout</button>
+                </form>
+            </div>
+        </nav>
+        <div class = "container" style="font-family: sans-serif; width: 1150px; height: 555px; margin-top: 10px; margin-left: 200px; background-color: white; opacity: .85;">
+            <span>
+                <div class="container-movies" style="float:left; height: 530px; width: 525px; margin-top:25px; margin-left:25px; ">
+                    <h3 style="padding-left: 140px; font-family: papyrus;"><b>Movies</b></h3>
+                    <br>
+                    <table style="height:fit-505px; width:525px;">
+                        <tr>
+                            <th>
+                                Movie
+                            </th>
+                            <th>
+                                Venue
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Tags
+                            </th>
+                            <th>
+                                Capacity
+                            </th>
+                        </tr>
+                        {% for i in movies %}
+                        <tr>
+                            <td>{{i.movie_name}}</td>
+                            <td>{{i.movie_venue}}</td>
+                            <td>{{i.movie_price}}</td>
+                            <td>{{i.movie_tags}}</td>
+                            <td>{{i.movie_capacity}}</td>
+                            <td style="padding-bottom: 7px;">
+                                <div class="btn-group dropright">
+                                    <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px; font-size: 15px; font-weight: bold; cursor: pointer; font-family: papyrus;">
+                                    Action
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="{{url_for('views.view_page_movie', id = i.movie_id)}}">Edit</a>
+                                        <a class="dropdown-item" href="{{url_for('views.delete_movie', id = i.movie_id)}}">Delete</a>
+                                    </div>
+                                </div>
+                            </td>    
+                        </tr>    
+                        {% endfor %}
+                    </table>
+                </div>
+            </span> 
+            <span>
+                <div class="container-movies" style="float:left; height: 530px; width: 525px; margin-top:25px; margin-left:25px; ">
+                    <h3 style="padding-left: 140px; font-family: papyrus;"><b>Venues</b></h3>
+                    <br>
+                    <table style="height:fit-505px; width:525px;">
+                        <tr>
+                            <th>
+                                Venue
+                            </th>
+                            <th>
+                                Place
+                            </th>
+                            <th>
+                                Location
+                            </th>
+                        </tr>
+                        {% for j in venue %}
+                        <tr>
+                            <td>{{j.venue_name}}</td>
+                            <td>{{j.venue_place}}</td>
+                            <td>{{j.venue_location}}</td>
+                            <td style="padding-bottom: 7px;">
+                                <div class="btn-group dropright">
+                                    <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px; font-size: 15px; font-weight: bold; cursor: pointer; font-family: papyrus;">
+                                    Action
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="{{url_for('views.view_page_venue', id = j.venue_id)}}">Edit</a>
+                                        <a class="dropdown-item" href="{{url_for('views.delete_venue', id = j.venue_id)}}">Delete</a>
+                                    </div>
+                                </div>
+                            </td>    
+                        </tr>    
+                        {% endfor %}
+                    </table>
+                </div>
+            </span>   
+        </div> 
+    </div>    
+</body>
+</html>

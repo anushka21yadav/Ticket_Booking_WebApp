@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+</head>
+<body style="background-color: black;">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert alert-dismissible fade show" role="alert" style="margin-top: 20px; width: 1150px; margin-left: 200px; background-image: linear-gradient(90deg, #E7E9BB,  #403B4A);">
+        <div style="font-weight: bolder; font-family: papyrus; font-size: large;">{{message}}</div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>      
+    {% endfor %}
+    <div class = "container" style="font-family: sans-serif; width: 1150px; height: 625px; margin-left: 175px; margin-right: 50px; margin-top: 45px; margin-bottom: 50px; padding-left: 50px; padding-right:90px; padding-top: 25px; border-radius: 10px; background-color: white;">
+        <div class="content1" style= "float:left">
+            <div class="left-image" style="margin-top: -3px ;margin-left: -20px;">
+                <img src ="https://i.pinimg.com/originals/bb/61/7e/bb617e1cadf60bdddf848aa586ab6391.jpg" width="500" height="580" style="border-radius: 10px; ">
+            </div>  
+        </div>
+        <div class="content2" style= "float:right; margin-right: -50px; margin-top: 50px;"> 
+            <div class="right">
+                <form class="login-form">
+                    <div align="center" class="title" style="font-size: larger;">
+                        <h1>Ticket Show</h1>
+                    </div>
+                    <br>
+                    <p style="letter-spacing: 1px; font-size: 20px;">
+                        Login into your account
+                    </p>
+                    <div class="item">
+                        <input type="text" name="username" id="username" placeholder="Enter Username" style="border: 2px solid lightgrey; border-radius: 5px; width: 500px; height: 40px">
+                    </div>
+                    <br>
+                    <div class="item">
+                        <input type="password" name="password" id="password" placeholder="Enter Password" style=" border: 2px solid lightgrey; border-radius: 5px; width: 500px; height: 40px">
+                    </div>
+                    <br>
+                    <select id="role" name="role" style=" border: 2px solid lightgrey; border-radius: 5px; width: 507px; height: 45px">
+                        <option disabled value="Role">Role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
+                    </select>
+                <br>  
+                <br>
+                <div class="button">
+                    <button type="submit" formaction="/login_post" formmethod='POST' style=" border-radius: 5px; width: 505px; height: 45px; font-size: 20px; background-color: #202020; color:aliceblue; font-weight: bold; cursor: pointer; ">Login</button>    
+                </div>
+                </form>
+                <br>
+                <br>
+                <br>
+                <div align="center" class="footer">
+                    <p style="font-weight: lighter; color: #393f81;">Do not have an account?<a href="sign_up" style="color: #393f81;"> Register here</a></p>
+                </div>  
+            </div>    
+        </div>
+</body>
+</html>

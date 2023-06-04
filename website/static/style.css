@@ -1,0 +1,28 @@
+body{
+    /* background-image: linear-gradient(45deg,#F5F7FA,#B8C6DB);
+    background-repeat: no-repeat;
+    background-attachment: fixed; */
+    background-color: black;
+}
+.flash_sucess{
+    flex: 10;
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 17px;
+    background-color: lightgrey;
+    padding: 10px 30px;
+}
+
+.flash_error{
+    flex: 10;
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 17px;
+    background-color: lightgrey;
+    padding: 10px 30px;
+}
+
+
+/* <body style="background-image: url(https://st3.depositphotos.com/1177973/17978/i/1600/depositphotos_179788836-stock-photo-tasty-popcorn-movie-reel-tickets.jpg */
